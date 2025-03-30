@@ -1,3 +1,4 @@
 fastapi
 uvicorn
 svgwrite
+pytest  # Will only used on the dev environment
