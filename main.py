@@ -1,6 +1,8 @@
-from fastapi import FastAPI, Query, Response
+from fastapi import Depends, FastAPI, Query, Response
 from pydantic import BaseModel
 import svgwrite
+
+from schemas import FontData, font_data_dependency
 
 app = FastAPI()
 
@@ -15,9 +17,12 @@ def home():
 
 @app.get("/generate")
 def generate(
-    words: str = Query(...),
+    words: str = Query('hello,help'), #TODO after testing, make it mandatory using ellipsis (...)
+    show_time: int = Query(1000),
+    fade_time: int = Query(1000),
+    translation_time: int = Query(1000),
+    font: FontData = Depends(font_data_dependency),
 ):
-    # return {"message": f"Words sent are: {words}."}
     dwg = svgwrite.Drawing(size=("200px", "100px"))
     dwg.add(dwg.text(words, insert=(10, 20), fill='blue'))
     svg = dwg.tostring()
