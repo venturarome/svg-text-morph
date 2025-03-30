@@ -2,7 +2,11 @@ from fastapi import Depends, FastAPI, Query, Response
 from pydantic import BaseModel
 import svgwrite
 
-from schemas import AnimationData, animation_data_dependency, FontData, font_data_dependency
+from schemas import (
+    AnimationData, animation_data_dependency, 
+    FontData, font_data_dependency, 
+    Words, words_dependency,
+)
 
 app = FastAPI()
 
@@ -17,11 +21,11 @@ def home():
 
 @app.get("/generate")
 def generate(
-    words: str = Query('hello,help'), #TODO after testing, make it mandatory using ellipsis (...)
+    words: Words = Depends(words_dependency),
     font: FontData = Depends(font_data_dependency),
     animation: AnimationData = Depends(animation_data_dependency),
 ):
     dwg = svgwrite.Drawing(size=("200px", "100px"))
-    dwg.add(dwg.text(words, insert=(10, 20), fill='blue'))
+    dwg.add(dwg.text(words.data, insert=(10, 20), fill='blue'))
     svg = dwg.tostring()
     return Response(content=svg, media_type="image/svg+xml")
