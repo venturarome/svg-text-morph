@@ -44,6 +44,12 @@ class Words(BaseModel):
                     self.data = pattern  # Found a repeating pattern; replace.
         return  # No repeating pattern found; keep original list.
 
+    def max_len(self) -> int:
+        """
+        Returns the length of the longest word
+        """
+        return max(len(word) for word in self.data)
+
 def words_dependency(
     words: str = Query(...),
 ) -> Words:

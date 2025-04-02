@@ -7,13 +7,9 @@ from schemas import (
     FontData, font_data_dependency, 
     Words, words_dependency,
 )
+from services import ConfigureSvg
 
 app = FastAPI()
-
-
-class User(BaseModel):
-    name: str
-    age: int
 
 @app.get("/")
 def home():
@@ -25,7 +21,8 @@ def generate(
     font: FontData = Depends(font_data_dependency),
     animation: AnimationData = Depends(animation_data_dependency),
 ):
-    dwg = svgwrite.Drawing(size=("200px", "100px"))
-    dwg.add(dwg.text(words.data, insert=(10, 20), fill='blue'))
-    svg = dwg.tostring()
-    return Response(content=svg, media_type="image/svg+xml")
+    svg_config = ConfigureSvg(words, font, animation)
+    return Response(
+        content=svg_config.generate(),
+        media_type="image/svg+xml"
+    )

@@ -17,6 +17,11 @@ class FontData(BaseModel):
     def __str__(self) -> str:
         return f"font-family:{self.family};font-size:{self.size}px;font-weight:{self.weight};font-style:{self.style}"
 
+    def char_height(self) -> int:
+        return self.size
+    
+    def char_width(self) -> int:
+        return int(0.6 * self.size)
 
 def font_data_dependency(
     font_family: str = Query("Consolas, monospace"),    # TODO add enums and validators!
