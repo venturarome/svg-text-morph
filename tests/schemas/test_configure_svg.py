@@ -1,36 +1,30 @@
-from services.configure_svg import nth_occurrence_index
+from services.configure_svg import inner_join, left_join, right_join
 
-def test_nth_occurrence_index():
-    # Case 1: Regular case
-    result = nth_occurrence_index("banana", "a", 2)
-    assert result == 3, f"Expected 3, got {result}"
+def test_inner_join():
+    # Normal case
+    assert inner_join(["a1", "b1", "c1"], ["b1", "c1", "d1"]) == ["b1", "c1"]
 
-    # Case 2: First occurrence
-    result = nth_occurrence_index("banana", "b", 1)
-    assert result == 0, f"Expected 0, got {result}"
+    # First empty
+    assert inner_join([], ["a1"]) == []
 
-    # Case 3: Last occurrence
-    result = nth_occurrence_index("banana", "a", 3)
-    assert result == 5, f"Expected 5, got {result}"
+    # Second empty
+    assert inner_join(["a1"], []) == []
 
-    # Case 4: Character not present
-    result = nth_occurrence_index("banana", "z", 1)
-    assert result == -1, f"Expected -1, got {result}"
+    # Both empty
+    assert inner_join([], []) == []
 
-    # Case 5: Not enough occurrences
-    result = nth_occurrence_index("banana", "n", 3)
-    assert result == -1, f"Expected -1, got {result}"
+    # Different order
+    assert inner_join(["a1", "a2"], ["a2", "a1"]) == ["a1", "a2"]
 
-    # Case 6: Input string is empty
-    result = nth_occurrence_index("", "a", 1)
-    assert result == -1, f"Expected -1, got {result}"
+def test_left_join():
+    # Normal case
+    assert left_join(["a1", "b1", "c1"], ["b1", "d1"]) == ["a1", "c1"]
 
-    # Case 7: Asking for 0-th occurrence (invalid input)
-    result = nth_occurrence_index("banana", "a", 0)
-    assert result == -1, f"Expected -1, got {result}"
+    # First empty
+    assert left_join([], ["a1"]) == []
 
-    # Case 8: Case insensitivity check
-    result = nth_occurrence_index("BanAna", "a", 2)
-    assert result == 5, f"Expected 5, got {result}"  # 'a' at index 3
+    # Second empty
+    assert left_join(["a1"], []) == ["a1"]
 
-    print("All tests passed.")
+    # Both empty
+    assert left_join([], []) == []

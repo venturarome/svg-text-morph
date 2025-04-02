@@ -13,11 +13,16 @@ class Attribute:
         return f"Attribute(name='{self.name}', states={self.states})"
     
     def add_state(self, state: State) -> None:
+        for existing_state in self.states:
+            if existing_state.time == state.time and existing_state.value == state.value:
+                return  # Duplicated state, do nothing
         self.states.append(state)
+        
         # Sort the states by time after each insertion.
         self.states.sort(key=lambda s: s.time)
 
     def format_values(self) -> str:
+        #TODO implement self.simplify() to remove redundant states
         return ";".join(str(state.value) for state in self.states)
 
     def format_key_times(self, duration: int) -> str:
