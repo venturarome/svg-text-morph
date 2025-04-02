@@ -1,4 +1,5 @@
 fastapi
 uvicorn
 svgwrite
+jinja2
 pytest  # Will only used on the dev environment

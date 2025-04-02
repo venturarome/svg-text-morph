@@ -1,6 +1,7 @@
-from fastapi import Depends, FastAPI, Query, Response
-from pydantic import BaseModel
-import svgwrite
+from fastapi import Depends, FastAPI, Request, Response
+from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 
 from schemas import (
     AnimationData, animation_data_dependency, 
@@ -10,10 +11,13 @@ from schemas import (
 from services import ConfigureSvg
 
 app = FastAPI()
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
-@app.get("/")
-def home():
-    return {"message": "SVG TextMorph API is running!"}
+templates = Jinja2Templates(directory="templates")
+
+@app.get("/", response_class=HTMLResponse)
+async def welcome_page(request: Request):
+    return templates.TemplateResponse("index.html", {'request': request})
 
 @app.get("/generate")
 def generate(
@@ -26,3 +30,7 @@ def generate(
         content=svg_config.generate(),
         media_type="image/svg+xml"
     )
+
+@app.get("/{catch_all:path}", include_in_schema=False)
+async def catch_all_route(catch_all: str):
+    return RedirectResponse(url="/")

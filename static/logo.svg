@@ -1,0 +1,17 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="200" height="200" fill="#007acc"/>
+  
+  <text x="50%" y="60" text-anchor="middle" alignment-baseline="middle"
+        font-family="Arial, sans-serif" font-size="42" fill="#ffffff">
+    SVG
+  </text>
+  <text x="50%" y="100" text-anchor="middle" alignment-baseline="middle"
+        font-family="Arial, sans-serif" font-size="42" fill="#ffffff">
+    text
+  </text>
+  <text x="50%" y="140" text-anchor="middle" alignment-baseline="middle"
+        font-family="Arial, sans-serif" font-size="42" fill="#ffffff">
+    morph
+  </text>
+</svg>

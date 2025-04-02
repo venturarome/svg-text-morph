@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to svg-text-morph!</title>
+    <!-- Favicon: Use your logo as the site icon -->
+    <link rel="icon" href="/static/logo.svg" type="image/svg+xml" sizes="any">
+
+    <!-- Open Graph: Set the thumbnail for social sharing -->
+    <meta property="og:title" content="svg-text-morph">
+    <meta property="og:description" content="A dynamic SVG animation API for text morphing.">
+    <meta property="og:image" content="/static/logo.svg">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card: Configure the thumbnail for Twitter sharing -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="svg-text-morph">
+    <meta name="twitter:description" content="A dynamic SVG animation API for text morphing.">
+    <meta name="twitter:image" content="/static/logo.svg">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" 
+          referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background: #f8f9fa;
+            color: #333;
+        }
+        h1 {
+            color: #007acc;
+        }
+        a {
+            color: #1e90ff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+        .icon {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to svg-text-morph!</h1>
+    <p>
+        svg-text-morph is a dynamic SVG animation API built with FastAPI.
+        It lets you generate smooth text morphing animations on the fly.
+    </p>
+    <p>
+        Check out our <a href="https://github.com/venturarome/svg-text-morph" target="_blank">
+        <i class="fab fa-github icon"></i>GitHub project</a> and remember to give it a 
+        <i class="fas fa-star icon"></i>star if you like it!
+    </p>
+    <p>
+        Explore the API documentation at the <a href="/docs">/docs</a> endpoint.
+    </p>
+    <p>
+        Ready to generate your animated SVGs? Visit the <a href="/generate">/generate</a> endpoint.
+        <br>
+        Need inspiration? What a about preparing a smoothie with some fruits? Try navigating to <a href="/generate?words=pineapple,papaya,raspberry">/generate?words=pineapple,papaya,raspberry</a> and check how it tastes.
+    </p>
+    <p>
+        Enjoy and happy animating!
+    </p>
+</body>
+</html>
